@@ -6,14 +6,8 @@ import {
   DynamicContextProvider,
   DynamicWidget,
 } from '@dynamic-labs/sdk-react-core';
-import { EthereumWalletConnectors } from '@dynamic-labs/ethereum';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { http } from 'viem';
-import { mainnet } from 'viem/chains';
 import { BitcoinWalletConnectors } from "@dynamic-labs/bitcoin";
 
-
-const queryClient = new QueryClient();
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +29,7 @@ export default function RootLayout({
             environmentId: process.env.DYNAMIC_ENVIROMENT_ID!,
             walletConnectors: [BitcoinWalletConnectors]
           }}>
+          <DynamicWidget />
           {children}
         </DynamicContextProvider>
       </body >
