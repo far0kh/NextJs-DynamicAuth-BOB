@@ -2,8 +2,31 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
-// import { BitcoinWalletConnectors } from "@dynamic-labs/bitcoin";
+import {
+  DynamicContextProvider,
+  DynamicWidget,
+} from '@dynamic-labs/sdk-react-core';
+import { EthereumWalletConnectors } from '@dynamic-labs/ethereum';
+import { DynamicWagmiConnector } from '@dynamic-labs/wagmi-connector';
+import {
+  createConfig,
+  WagmiProvider,
+  useAccount,
+} from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { http } from 'viem';
+import { mainnet } from 'viem/chains';
+import { BitcoinWalletConnectors } from "@dynamic-labs/bitcoin";
+
+const config = createConfig({
+  chains: [mainnet],
+  multiInjectedProviderDiscovery: false,
+  transports: {
+    [mainnet.id]: http(),
+  },
+});
+
+const queryClient = new QueryClient();
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +43,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <DynamicContextProvider
+        <DynamicContextProvider
           settings={{
             environmentId: process.env.DYNAMIC_ENVIROMENT_ID!,
             walletConnectors: [BitcoinWalletConnectors]
-          }}> */}
-        {children}
-        {/* </DynamicContextProvider> */}
-      </body>
-    </html>
+          }}>
+          {children}
+        </DynamicContextProvider>
+      </body >
+    </html >
   );
 }
