@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+// import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+// import { BitcoinWalletConnectors } from "@dynamic-labs/bitcoin";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* <DynamicContextProvider
+          settings={{
+            environmentId: process.env.DYNAMIC_ENVIROMENT_ID!,
+            walletConnectors: [BitcoinWalletConnectors]
+          }}> */}
+        {children}
+        {/* </DynamicContextProvider> */}
+      </body>
     </html>
   );
 }
