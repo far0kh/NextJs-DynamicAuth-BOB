@@ -4,11 +4,6 @@ import {
   DynamicContextProvider,
   DynamicWidget,
 } from '@dynamic-labs/sdk-react-core';
-import {
-  createConfig,
-  WagmiProvider,
-  useAccount,
-} from 'wagmi';
 
 export default function Home() {
   // function AccountInfo() {
